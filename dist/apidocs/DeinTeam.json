@@ -17,7 +17,7 @@
   "paths": {
     "/loadInitialData": {
       "get": {
-        "summary": "Request",
+        "summary": "Load Initial Data",
         "description": "",
         "operationId": "4a16a489-a0f4-457d-a2ef-6a4e7eb0bd77",
         "parameters": [
@@ -36,40 +36,20 @@
         }
       }
     },
-    "/appUser/loadAppUserData": {
-      "get": {
-        "summary": "Load App User Data",
-        "description": "",
-        "operationId": "a8c92034-bc03-4f6d-87c8-4ce39450bd87",
-        "responses": {
-          "default": {
-            "description": "no response description was provided for this operation"
-          }
-        },
-        "parameters": []
-      }
-    },
     "/appUser/requestAuthTokenForUsernameAndPassword": {
       "post": {
-        "summary": "requestAuthTokenForUsernameAndPassword",
+        "summary": "Login",
         "description": "",
-        "operationId": "49ea3024-d921-4ab1-a8b7-e40cd00665e0",
+        "operationId": "24ecde0e-c238-43aa-8c5c-9768b95f5f6f",
         "consumes": [
-          "content/json"
+          "application/json"
         ],
         "parameters": [
-          {
-            "type": "string",
-            "default": "",
-            "name": "team_id",
-            "required": false,
-            "in": "query"
-          },
           {
             "required": false,
             "schema": {
               "type": "string",
-              "default": "{\"email\":\"martin.snajdr@cobeisfresh.com\",\"password\":\"CtAbyvnC\"}"
+              "default": "{\"email\":\"test0001@gmail.com\",\"password\":\"12345\"}"
             },
             "in": "body",
             "name": "body"
@@ -80,6 +60,71 @@
             "description": "no response description was provided for this operation"
           }
         }
+      }
+    },
+    "/appUser/createNewAppUser": {
+      "post": {
+        "summary": "Create new user",
+        "description": "",
+        "operationId": "fe31dd72-0fa0-4b45-8b0d-84dae0105548",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"firstName\":\"Test\",\"lastName\":\"Test\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/appUser/updateAppUserData": {
+      "post": {
+        "summary": "Edit user",
+        "description": "",
+        "operationId": "83c495b1-b018-4acf-a28a-ab6c45e352ce",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"firstName\":\"testUpdateddfdfg\",\"lastName\":\"testUpdatedsdfsdf\",\"birthday\":\"\",\"phone\":\"\",\"email\":\"test0001@gmail.com\",\"password\":\"12345\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/appUser/deleteAppUser": {
+      "delete": {
+        "summary": "Delete user",
+        "description": "",
+        "operationId": "4170ebd4-9713-4b48-af4e-ab57c148681f",
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        },
+        "parameters": []
       }
     },
     "/appUser/sendNewPassword": {
@@ -99,6 +144,1116 @@
             },
             "in": "body",
             "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/appUser/loadAppUserData": {
+      "get": {
+        "summary": "Load user data",
+        "description": "",
+        "operationId": "a8c92034-bc03-4f6d-87c8-4ce39450bd87",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/appUser/enableEmailPasswordAuth": {
+      "post": {
+        "summary": "TODO: Enable email password auth",
+        "description": "",
+        "operationId": "7f43429a-d4e5-4ade-af7a-33cbec9f79db",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "",
+            "name": "appUserId",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"email\":\"\",\"password\":\"\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/teamUser/loadTeamUsersForTeam": {
+      "get": {
+        "summary": "Load",
+        "description": "",
+        "operationId": "98f5f001-f0a6-466b-886f-94ea2ad784d3",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "53704995",
+            "name": "teamId",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/team/createNewTeam": {
+      "post": {
+        "summary": "Create new team",
+        "description": "",
+        "operationId": "955f8f97-14cc-4cfa-b90c-557aced61b9c",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"name\":\"testteam2\",\"league\":\"testleague2\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/team/createTeamUser": {
+      "post": {
+        "summary": "Create team user",
+        "description": "",
+        "operationId": "1b3d7c6b-0a8e-4064-a39a-74e4408aa8c6",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "d1887e94-5d80-4489-bc3d-91e8eaa8c1c0",
+            "name": "shareID",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/calendar/createAppointment": {
+      "post": {
+        "summary": "Create appointment",
+        "description": "",
+        "operationId": "a4943ed0-c5fc-4975-ad43-7a20eefe47cd",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"53690531\",\"date\":\"1505740350\",\"address\":{\"name\":\"name\",\"thoroughfare\":\"thoroughfare\",\"subThoroughfare\":\"subThoroughfare\",\"postalCode\":\"postalCode\",\"locality\":\"locality\",\"iSOcountryCode\":\"iSOcountryCode\"},\"start\":\"1505740350\",\"end\":\"1505740350\",\"isFullTime\":true,\"repeatMode\":\"NEVER\",\"reminder\":\"1505740350\",\"meetAtDate\":\"1505740350\",\"meetingPoint\":\"1505740350\",\"opponent\":\"opponent\",\"eventType\":\"TRAINING\",\"creatorId\":\"1234\",\"birthdayBoyId\":53690531,\"teamUserIds\":[53690531],\"recurringEndDate\":\"1505740350\",\"summary\":\"summary\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/appointment/load": {
+      "get": {
+        "summary": "Get appointments",
+        "description": "",
+        "operationId": "e3afccaa-f141-4305-945a-d73d31b36a63",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "1505740350",
+            "name": "last_updated",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/calendar/editAppointment": {
+      "post": {
+        "summary": "Edit appointment",
+        "description": "",
+        "operationId": "a21c1e7c-5e14-4112-ab0b-33b78b499ad9",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"53690531\",\"date\":\"1505740350\",\"address\":{\"name\":\"nameasdasdsdasdf\",\"thoroughfare\":\"thoroughfare\",\"subThoroughfare\":\"subThoroughfare\",\"postalCode\":\"postalCode\",\"locality\":\"locality\",\"iSOcountryCode\":\"iSOcountryCode\"},\"start\":\"1505740350\",\"end\":\"1505740350\",\"isFullTime\":true,\"repeatMode\":\"NEVER\",\"reminder\":\"1505740350\",\"meetAtDate\":\"1505740350\",\"meetingPoint\":\"1505740350\",\"opponent\":\"opponent\",\"eventType\":\"TRAINING\",\"creatorId\":\"1234\",\"birthdayBoyId\":53690531,\"teamUserIds\":[53690531],\"recurringEndDate\":\"1505740350\",\"summary\":\"summarysadafdadfasdf\",\"appointmentId\":\"53705813\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/calendar/deleteAppointment": {
+      "delete": {
+        "summary": "Delete appointment",
+        "description": "",
+        "operationId": "cd592c96-253a-46f6-b9b3-14d96629f078",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"appointmentId\":\"53705813\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/calendar/loadCalendar": {
+      "get": {
+        "summary": "Load calendar",
+        "description": "",
+        "operationId": "94dbc9a9-250b-4a25-a702-0c24a8d911f5",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323349",
+            "name": "teamUserId",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/calendar/sendAppointmentAnswer": {
+      "post": {
+        "summary": "TODO: Send appointment answer",
+        "description": "",
+        "operationId": "1455c9cd-0ea4-4ca2-9e4f-f075ff089284",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamUserId\":\"51323349\",\"answerId\":12,\"answerType\":\"ACCEPTED\",\"text\":\"\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/contest/load": {
+      "get": {
+        "summary": "Get contests",
+        "description": "",
+        "operationId": "f975dd9e-a2ea-4b19-9302-1727c036820d",
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/contest/enter": {
+      "post": {
+        "summary": "TODO: Enter contest",
+        "description": "",
+        "operationId": "9ad8ec51-fd7e-45f5-9891-cc8b40cdeec8",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "51323349",
+            "name": "team_user_id",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/dashboard/loadDashboardMessages": {
+      "get": {
+        "summary": "Get messages",
+        "description": "",
+        "operationId": "dd3e570c-1e7e-454f-8b46-2c690dd875a6",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323349",
+            "name": "teamUserId",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/dashboard/deleteMessages": {
+      "post": {
+        "summary": "Delete messages",
+        "description": "",
+        "operationId": "06d3e800-6864-4a15-9d1c-461f7bdd2baf",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"messageIds\":[53691368]}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/dashboard/sendNewMessageToTeamMembers": {
+      "post": {
+        "summary": "Send message to team members",
+        "description": "",
+        "operationId": "b14df38a-b72e-4693-b77e-6b5179aba3f0",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamUserId\":\"51323349\",\"teamId\":\"51323348\",\"messageText\":\"Hey let's play\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/dashboard/uploadMessageImage": {
+      "post": {
+        "summary": "TODO: Upload message image",
+        "description": "",
+        "operationId": "2debd171-60e9-400b-87d8-083163eb2002",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "",
+            "name": "messageId",
+            "required": false,
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "default": "image/jpeg",
+            "name": "imageContentType",
+            "required": false,
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "default": "",
+            "name": "imageData",
+            "required": false,
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/news/load": {
+      "get": {
+        "summary": "Get news",
+        "description": "",
+        "operationId": "9ef6a756-c67d-41e8-a031-fbd36b387a53",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "1505740350",
+            "name": "last_updated",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/statistics/updateTeamUserStatistics/53723440": {
+      "post": {
+        "summary": "TODO: Update team user statistics",
+        "description": "",
+        "operationId": "76c4c1ea-5ca7-42fd-9e87-4a996258f66b",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"value\":\"123\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/calendar/loadTrainingsStatistics": {
+      "post": {
+        "summary": "TODO: Get training statistics",
+        "description": "",
+        "operationId": "e57ad93e-4c99-496c-b7d3-d689094ecc19",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"teamUserIds\":[\"51323349\"],\"startDate\":\"1505740350\",\"endDate\":\"1505740350\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/statistics/list": {
+      "get": {
+        "summary": "Get list of statistics",
+        "description": "",
+        "operationId": "1972ecc3-2762-4087-b11f-27df9f809d7a",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/statistics/load/53723440": {
+      "get": {
+        "summary": "Get statistic",
+        "description": "",
+        "operationId": "d9bc48d6-d463-4e87-a3fc-82490dc6d542",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/statistics/add": {
+      "post": {
+        "summary": "Add statistic",
+        "description": "",
+        "operationId": "7a61ef67-bf8b-456b-8473-6d00da1f2d71",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"team_id\":\"51323348\",\"name\":\"name\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/statistics/delete/53723542": {
+      "delete": {
+        "summary": "Delete statistic",
+        "description": "",
+        "operationId": "877a7ea0-74c1-4b18-8b1d-1df8fc6fc092",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"team_id\":\"51323348\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/betGame/loadBetGameRanking": {
+      "get": {
+        "summary": "TODO: Load bet game ranking",
+        "description": "",
+        "operationId": "60232d76-73ea-4fbd-9244-6f1d7adffb16",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "teamId",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/betGame/loadAllMatchDays": {
+      "post": {
+        "summary": "Load all match days",
+        "description": "",
+        "operationId": "fd80a854-3112-4405-9344-18e3db0923b4",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"league\":\"testleague\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/betGame/loadAllBetsForMatch": {
+      "post": {
+        "summary": "TODO: Load all bets for match",
+        "description": "",
+        "operationId": "69c6c062-d92d-41ce-9bfb-be6419b11f5d",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"matchId\":\"12\",\"teamId\":\"23\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/betGame/enterBet": {
+      "post": {
+        "summary": "TODO: Enter bet",
+        "description": "",
+        "operationId": "c5c6d8f7-591f-48e1-94ef-9b04532a606b",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"bets\":{\"matchId\":\"123\",\"suggestedGoalsTeam1\":0,\"suggestedGoalsTeam2\":0}}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/journal/loadTransactionCategories": {
+      "get": {
+        "summary": "Load transaction categories",
+        "description": "",
+        "operationId": "6becc1f5-dae8-452a-b4ec-d194a445acf4",
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/journal/loadJournal": {
+      "post": {
+        "summary": "Load journal",
+        "description": "",
+        "operationId": "df632b20-a48e-4ad0-8c5e-d707b8f23ba2",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "teamId",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/updateDefaultPenalty": {
+      "post": {
+        "summary": "Update/create default penalty",
+        "description": "If isFinancialAmount is false then you need to set type\n\nif (isFinancial) {\n            final float amount = Format.euro(amountET.getText().toString());\n            updateDefaultPenalty.defaultAmount(amount);\n        } else {\n            final float amountNatural = Float.parseFloat(amountNaturalET.getText().toString());\n            final String type = amountNaturalTypeET.getText().toString().trim();\n            updateDefaultPenalty.type(type);\n            updateDefaultPenalty.defaultAmount(amountNatural);\n        }",
+        "operationId": "18c6e969-15da-4086-a92a-a66843539424",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"defaultPenaltyId\":\"59849581\",\"defaultAmount\":4443,\"description\":\"description\",\"type\":\"Default penalty\",\"isCard\":true,\"isFinancialAmount\":true,\"teamId\":\"51323348\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/loadDefaultPenaltiesForTeam": {
+      "get": {
+        "summary": "Load default penalties for team",
+        "description": "",
+        "operationId": "28045215-ad3f-46bc-88d9-37072b86c75a",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "teamId",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/disableDefaultPenalty": {
+      "post": {
+        "summary": "Disable default penalty",
+        "description": "",
+        "operationId": "6037e077-500d-4ce4-8da1-9506c6247006",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"defaultPenaltyId\":\"59849581\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/createPenalties": {
+      "post": {
+        "summary": "Create penalty",
+        "description": "",
+        "operationId": "a3748b76-35d8-4d75-a359-c927d203584a",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamUserIds\":[\"51323349\"],\"amount\":234,\"description\":\"asdfs\",\"type\":\"some type\",\"isFinancialAmount\":true,\"teamId\":\"51323348\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/load": {
+      "get": {
+        "summary": "Load penalties",
+        "description": "",
+        "operationId": "0fd212b1-06c8-4ab5-a4e6-d802ed38b2da",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "1505740350",
+            "name": "last_updated",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/updatePenalty": {
+      "post": {
+        "summary": "Update penalty",
+        "description": "teamUserId is optional\n\nif (penalty.getAssociatedTeamUser() != null) {\n      put(“teamUserId”, penalty.getAssociatedTeamUser().getId());\n    }",
+        "operationId": "d1cd4887-1f3b-4e49-a23f-dd3336664769",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"penaltyId\":\"59847830\",\"teamUserId\":\"51323349\",\"amount\":\"9999\",\"description\":\"new description\",\"type\":\"new type\",\"isFinancialAmount\":true}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/disablePenalty": {
+      "post": {
+        "summary": "Disable penalty",
+        "description": "",
+        "operationId": "245c0009-7045-41ac-a290-a190eff16a68",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"penaltyId\":\"59847707\",\"teamId\":\"51323348\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/journal/createOrUpdateTransaction": {
+      "post": {
+        "summary": "Create or update transaction",
+        "description": "Add transactionId if you want to update transaction\n\nADD_TRANSACTION(“api/journal/createOrUpdateTransaction”, Type.POST) {\n    public void schedule(JSONObject body) {\n      if (!body.has(“shouldBePayedBefore”)) try {\n        body.put(“shouldBePayedBefore”, 1);\n      } catch (JSONException e) {\n        Log.e(TAG, “Unable to add transaction.“, e);\n      }\n      POSTJob.schedule(path, body);\n    }\n  }",
+        "operationId": "15eee632-7e67-439f-a673-673529a016d3",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"shouldBePayedBefore\":\"1\",\"teamId\":\"51323348\",\"teamUserIds\":[\"51323349\"],\"amount\":3333,\"text\":\"text\",\"transactionCategoryName\":\"kategorija\",\"isPayed\":false}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/transaction/load": {
+      "get": {
+        "summary": "Load transaction",
+        "description": "",
+        "operationId": "794964be-fa04-4221-95ed-885d92b88436",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "1505740350",
+            "name": "last_updated",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/journal/checkTransaction": {
+      "post": {
+        "summary": "Check transaction",
+        "description": "",
+        "operationId": "d4d627d6-8edf-4355-a888-eb20a9e21407",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"transactionId\":\"59845715\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/journal/deleteTransaction": {
+      "post": {
+        "summary": "Delete transaction",
+        "description": "",
+        "operationId": "b0374795-8d0a-412a-a9a6-6e33d1890ff2",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"teamId\":\"51323348\",\"transactionId\":\"123\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/penalty/loadPenaltiesForTeam": {
+      "get": {
+        "summary": "Load penalties for team",
+        "description": "",
+        "operationId": "bc5b667d-ef68-4acf-870b-e8bf0d08d08e",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "51323348",
+            "name": "teamId",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
