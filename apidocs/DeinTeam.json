@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "DeinTeam",
+    "description": "This document was generated from the branch master.\n\nIf you are a contributor to this project, you may access it here: https://paw.cloud/account/teams/5505/projects/14894",
+    "version": "v0.0.0",
+    "contact": {
+      "name": "COBE",
+      "url": "https://paw.cloud/account/teams/5505"
+    }
+  },
+  "host": "server.deinteam.de",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/api",
+  "paths": {
+    "/loadInitialData": {
+      "get": {
+        "summary": "Request",
+        "description": "",
+        "operationId": "4a16a489-a0f4-457d-a2ef-6a4e7eb0bd77",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "47029097",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/appUser/loadAppUserData": {
+      "get": {
+        "summary": "Load App User Data",
+        "description": "",
+        "operationId": "a8c92034-bc03-4f6d-87c8-4ce39450bd87",
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/appUser/requestAuthTokenForUsernameAndPassword": {
+      "post": {
+        "summary": "requestAuthTokenForUsernameAndPassword",
+        "description": "",
+        "operationId": "49ea3024-d921-4ab1-a8b7-e40cd00665e0",
+        "consumes": [
+          "content/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "",
+            "name": "team_id",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"email\":\"martin.snajdr@cobeisfresh.com\",\"password\":\"CtAbyvnC\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/appUser/sendNewPassword": {
+      "post": {
+        "summary": "Send new password",
+        "description": "",
+        "operationId": "79f05951-0716-4bf1-9a88-0962b410198f",
+        "consumes": [
+          "content/json"
+        ],
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"email\":\"martin.snajdr@cobeisfresh.com\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Team Feed",
+        "description": "",
+        "operationId": "578a5f7e-0692-44dc-bec3-0fa664bba7c0",
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}
