@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { fromJS } from "immutable"
-import { getSampleSchema } from "core/utils"
+import cx from "classnames"
+import { fromJS, Seq } from "immutable"
+import { getSampleSchema, fromJSOrdered } from "core/utils"
 
 const getExampleComponent = ( sampleResponse, examples, HighlightCode ) => {
   if ( examples && examples.size ) {
@@ -31,6 +32,13 @@ const getExampleComponent = ( sampleResponse, examples, HighlightCode ) => {
 }
 
 export default class Response extends React.Component {
+  constructor(props, context) {
+    super(props, context)
+
+    this.state = {
+      responseContentType: ""
+    }
+  }
 
   static propTypes = {
     code: PropTypes.string.isRequired,
@@ -39,36 +47,66 @@ export default class Response extends React.Component {
     getComponent: PropTypes.func.isRequired,
     specSelectors: PropTypes.object.isRequired,
     fn: PropTypes.object.isRequired,
-    contentType: PropTypes.string
+    contentType: PropTypes.string,
+    controlsAcceptHeader: PropTypes.bool,
+    onContentTypeChange: PropTypes.func
   }
 
   static defaultProps = {
     response: fromJS({}),
+    onContentTypeChange: () => {}
   };
+
+  _onContentTypeChange = (value) => {
+    const { onContentTypeChange, controlsAcceptHeader } = this.props
+    this.setState({ responseContentType: value })
+    onContentTypeChange({
+      value: value,
+      controlsAcceptHeader
+    })
+  }
 
   render() {
     let {
       code,
       response,
       className,
-
       fn,
       getComponent,
       specSelectors,
-      contentType
+      contentType,
+      controlsAcceptHeader
     } = this.props
 
     let { inferSchema } = fn
+    let { isOAS3 } = specSelectors
 
-    let schema = inferSchema(response.toJS())
     let headers = response.get("headers")
     let examples = response.get("examples")
+    let links = response.get("links")
     const Headers = getComponent("headers")
     const HighlightCode = getComponent("highlightCode")
     const ModelExample = getComponent("modelExample")
     const Markdown = getComponent( "Markdown" )
+    const OperationLink = getComponent("operationLink")
+    const ContentType = getComponent("contentType")
 
-    let sampleResponse = schema ? getSampleSchema(schema, contentType, { includeReadOnly: true }) : null
+    var sampleResponse
+    var schema
+
+    if(isOAS3()) {
+      let oas3SchemaForContentType = response.getIn(["content", this.state.responseContentType, "schema"])
+      sampleResponse = oas3SchemaForContentType ? getSampleSchema(oas3SchemaForContentType.toJS(), this.state.responseContentType, {
+        includeReadOnly: true
+      }) : null
+      schema = oas3SchemaForContentType ? inferSchema(oas3SchemaForContentType.toJS()) : null
+    } else {
+      schema = inferSchema(response.toJS())
+      sampleResponse = schema ? getSampleSchema(schema, contentType, {
+        includeReadOnly: true,
+        includeWriteOnly: true // writeOnly has no filtering effect in swagger 2.0
+       }) : null
+    }
     let example = getExampleComponent( sampleResponse, examples, HighlightCode )
 
     return (
@@ -82,11 +120,24 @@ export default class Response extends React.Component {
             <Markdown source={ response.get( "description" ) } />
           </div>
 
+          { isOAS3 ?
+            <div className={cx("response-content-type", {
+              "controls-accept-header": controlsAcceptHeader
+            })}>
+              <ContentType
+                  value={this.state.responseContentType}
+                  contentTypes={ response.get("content") ? response.get("content").keySeq() : Seq() }
+                  onChange={this._onContentTypeChange}
+                  />
+                { controlsAcceptHeader ? <small>Controls <code>Accept</code> header.</small> : null }
+            </div>
+             : null }
+
           { example ? (
             <ModelExample
               getComponent={ getComponent }
               specSelectors={ specSelectors }
-              schema={ fromJS(schema) }
+              schema={ fromJSOrdered(schema) }
               example={ example }/>
           ) : null}
 
@@ -94,8 +145,15 @@ export default class Response extends React.Component {
             <Headers headers={ headers }/>
           ) : null}
 
-        </td>
 
+        </td>
+        {specSelectors.isOAS3() ? <td className="col response-col_links">
+          { links ?
+            links.toSeq().map((link, key) => {
+              return <OperationLink key={key} name={key} link={ link } getComponent={getComponent}/>
+            })
+          : <i>No links</i>}
+        </td> : null}
       </tr>
     )
   }
